@@ -5,9 +5,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function assetUrl(path: string): string {
+export const assetUrl = (path: string) => {
   return `${import.meta.env.BASE_URL}${path}`;
-}
+};
 
 export function formatSize(bytes: number): string {
   if (bytes === 0) return "0 Bytes";
