@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { usePuterStore } from "~/lib/puter";
+import { assetUrl } from "~/lib/utils";
 
 export const meta = () => {
   return [
@@ -20,7 +21,10 @@ const auth = () => {
   }, [auth.isAuthenticated, next, navigate]);
 
   return (
-    <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen flex items-center justify-center ">
+    <main
+      className="bg-cover min-h-screen flex items-center justify-center"
+      style={{ backgroundImage: `url(${assetUrl("images/bg-main.svg")})` }}
+    >
       <div className="gradient-border shadow-2lg">
         <section className="flex flex-col gap bg-white rounded-2xl p-5">
           <div className="flex flex-col items-center text-center ">

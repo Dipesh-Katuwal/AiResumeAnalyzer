@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Route } from "react-router";
 import { Link } from "react-router";
 import { usePuterStore } from "~/lib/puter";
+import { assetUrl } from "~/lib/utils";
 import { useState } from "react";
 import Summary from "../components/Summary";
 import Details from "../components/Details";
@@ -61,14 +62,21 @@ const Resume = () => {
     <main className="pt-0!">
       <nav className="resume-nav">
         <Link to="/" className="back-button">
-          <img src="/icons/back.svg" alt="logo" className="w-2.5 h-2.5"></img>
+          <img
+            src={assetUrl("icons/back.svg")}
+            alt="logo"
+            className="w-2.5 h-2.5"
+          ></img>
           <span className="text-gray-800 font-semibold text-sm">
             Back to Homepage
           </span>
         </Link>
       </nav>
       <div className="flex flex-row w-full max-lg:flex-col-reverse">
-        <section className="feedback-section bg-[url('/images/bg-small.svg')] bg-cover h-screen sticky top-0 justify-center items-center overflow-hidden">
+        <section
+          className="feedback-section bg-cover h-screen sticky top-0 justify-center items-center overflow-hidden"
+          style={{ backgroundImage: `url(${assetUrl("images/bg-small.svg")})` }}
+        >
           {imageUrl && resumeUrl && (
             <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 w-full max-w-2xl flex items-center justify-center">
               <a
@@ -100,7 +108,10 @@ const Resume = () => {
               <Details feedback={feedback} />
             </div>
           ) : (
-            <img src="/images/resume-scan-2.gif" className="w-full"></img>
+            <img
+              src={assetUrl("images/resume-scan-2.gif")}
+              className="w-full"
+            ></img>
           )}
         </section>
       </div>

@@ -3,8 +3,9 @@ import NavBar from "~/components/NavBar";
 import ResumeCard from "~/components/ResumeCard";
 import { usePuterStore } from "~/lib/puter";
 import { useNavigate } from "react-router";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { assetUrl } from "~/lib/utils";
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "ResumeAnalyzer" },
@@ -16,30 +17,35 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const { isLoading, auth,kv } = usePuterStore();
+  const { isLoading, auth, kv } = usePuterStore();
   const navigate = useNavigate();
-  const [resumes,setResumes]=useState<Resume[]>([])
-  const [loadingResumes,setLoadingResumes]=useState(false)
+  const [resumes, setResumes] = useState<Resume[]>([]);
+  const [loadingResumes, setLoadingResumes] = useState(false);
 
   useEffect(() => {
     if (!isLoading && !auth.isAuthenticated) navigate("/auth?next=/");
   }, [isLoading, auth.isAuthenticated, navigate]);
 
-  useEffect(()=>{
-    const loadResumes=async ()=>{
-      setLoadingResumes(true)
-      const resumes=await(kv.list('resume:*',true))as KVItem[]
-      const parsedResumes= resumes?.map((resume)=>(JSON.parse(resume.value)as Resume))
+  useEffect(() => {
+    const loadResumes = async () => {
+      setLoadingResumes(true);
+      const resumes = (await kv.list("resume:*", true)) as KVItem[];
+      const parsedResumes = resumes?.map(
+        (resume) => JSON.parse(resume.value) as Resume,
+      );
 
-      console.log(parsedResumes)
-      setResumes(parsedResumes || [])
-      setLoadingResumes(false)
-    }
+      console.log(parsedResumes);
+      setResumes(parsedResumes || []);
+      setLoadingResumes(false);
+    };
     loadResumes();
-  },[])
+  }, []);
 
   return (
-    <main className="bg-[url('/images/bg-main.svg')] bg-cover ">
+    <main
+      className="bg-cover"
+      style={{ backgroundImage: `url(${assetUrl("images/bg-main.svg")})` }}
+    >
       <NavBar />
       <section className="main-section">
         <div className="page-heading py-5">
@@ -52,7 +58,10 @@ export default function Home() {
         </div>
         {loadingResumes && (
           <div className="flex flex-col justify-center items-center">
-            <img src="/images/resume-scan2.gif" className="w-200px"></img>
+            <img
+              src={assetUrl("images/resume-scan2.gif")}
+              className="w-200px"
+            ></img>
           </div>
         )}
         {!loadingResumes && resumes.length > 0 && (

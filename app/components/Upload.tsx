@@ -5,7 +5,7 @@ import FileUploader from "./FileUploader";
 import { usePuterStore } from "~/lib/puter";
 import { useNavigate } from "react-router";
 import { convertPdfToImage } from "~/lib/pdf2img";
-import { generateUUID } from "~/lib/utils";
+import { assetUrl, generateUUID } from "~/lib/utils";
 import { AIResponseFormat, prepareInstructions } from "~/constants";
 
 const Upload = () => {
@@ -79,7 +79,6 @@ const Upload = () => {
       setStatusText(`Error: ${message}`);
       setIsProcessing(false);
     }
-    
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -106,7 +105,10 @@ const Upload = () => {
   };
 
   return (
-    <main className="bg-[url('/images/bg-main.svg')] bg-cover ">
+    <main
+      className="bg-cover"
+      style={{ backgroundImage: `url(${assetUrl("images/bg-main.svg")})` }}
+    >
       <NavBar />
       <section className="main-section">
         <div className="page-heading py-5">
@@ -115,7 +117,10 @@ const Upload = () => {
         {isProcessing ? (
           <>
             <h2>{statusText}</h2>
-            <img src="images/resume-scan.gif" className="w-50 h-50"></img>
+            <img
+              src={assetUrl("images/resume-scan.gif")}
+              className="w-50 h-50"
+            ></img>
           </>
         ) : (
           <h2>Drop your resume for an ATS score and improvement tips</h2>
