@@ -73,12 +73,13 @@ const Upload = () => {
       await kv.set(`resume:${uuid}`, JSON.stringify(data));
       setStatusText("Analysis complete...redirecting");
       console.log(data);
+      navigate(`/resume/${uuid}`);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unknown error";
       setStatusText(`Error: ${message}`);
       setIsProcessing(false);
     }
-    //navigate(`/resume/${uuid}`);
+    
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
