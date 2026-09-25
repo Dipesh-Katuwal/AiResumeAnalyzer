@@ -5,9 +5,9 @@ import { Route } from "react-router";
 import { Link } from "react-router";
 import { usePuterStore } from "~/lib/puter";
 import { useState } from "react";
-import Summary from "./Summary";
-import Details from "./Details";
-import ATS from "./ATS";
+import Summary from "../components/Summary";
+import Details from "../components/Details";
+import ATS from "../components/ATS";
 export const meta = () => {
   return [
     { title: "Resume | Review" },
@@ -71,7 +71,12 @@ const Resume = () => {
         <section className="feedback-section bg-[url('/images/bg-small.svg')] bg-cover h-screen sticky top-0 justify-center items-center overflow-hidden">
           {imageUrl && resumeUrl && (
             <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 w-full max-w-2xl flex items-center justify-center">
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="ml-15">
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-15"
+              >
                 <img
                   src={imageUrl}
                   className="max-w-[90%] max-h-[90%] object-contain rounded-2xl"
@@ -87,9 +92,12 @@ const Resume = () => {
           </h2>
           {feedback ? (
             <div className="flex flex-col gap-8 animate-in fade-in duration-1000">
-             <Summary feedback={feedback}/>
-             <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []}/>
-             <Details feedback={feedback}/> 
+              <Summary feedback={feedback} />
+              <ATS
+                score={feedback.ATS.score || 0}
+                suggestions={feedback.ATS.tips || []}
+              />
+              <Details feedback={feedback} />
             </div>
           ) : (
             <img src="/images/resume-scan-2.gif" className="w-full"></img>
