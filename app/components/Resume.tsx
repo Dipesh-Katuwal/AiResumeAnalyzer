@@ -70,18 +70,18 @@ const Resume = () => {
       <div className="flex flex-row w-full max-lg:flex-col-reverse">
         <section className="feedback-section bg-[url('/images/bg-small.svg')] bg-cover h-screen sticky top-0 justify-center items-center overflow-hidden">
           {imageUrl && resumeUrl && (
-            <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0  w-full max-w-2xl flex items-center justify-center">
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="ml-30">
+            <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 w-full max-w-2xl flex items-center justify-center">
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="ml-15">
                 <img
                   src={imageUrl}
-                  className="max-w-[72%] max-h-[72%] object-contain rounded-2xl"
+                  className="max-w-[90%] max-h-[90%] object-contain rounded-2xl"
                   title="resume"
                 ></img>
               </a>
             </div>
           )}
         </section>
-        <section className="feedback-section">
+        <section className="feedback-section text-2xl!">
           <h2 className="text-black! text-4xl font-serif w-full text-center">
             Resume Review
           </h2>
