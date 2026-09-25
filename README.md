@@ -1,5 +1,7 @@
 # AI Resume Analyzer
 
+🔗 **[Live Demo](https://airesumeanalyzer.puter.site/)**
+
 AI Resume Analyzer is a learning project built with React, TypeScript, React Router, and Puter.js.
 
 The app lets a user sign in with Puter, upload a PDF resume, provide information about the job they are applying for, and receive AI-generated resume feedback. Uploaded resumes and their analysis results can be viewed again from the home page.
