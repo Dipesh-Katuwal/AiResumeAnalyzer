@@ -28,6 +28,7 @@ const Resume = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (!isLoading && !auth.isAuthenticated)
       navigate(`/auth?next=/resume/${id}`);
   }, [isLoading, auth.isAuthenticated, navigate]);

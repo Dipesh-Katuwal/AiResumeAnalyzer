@@ -17,6 +17,7 @@ const WipeApp = () => {
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (!isLoading && !auth.isAuthenticated) {
       navigate("/auth?next=/wipe");
     }

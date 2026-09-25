@@ -17,6 +17,7 @@ const auth = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (auth.isAuthenticated) navigate(next);
   }, [auth.isAuthenticated, next, navigate]);
 

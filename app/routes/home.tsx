@@ -23,10 +23,13 @@ export default function Home() {
   const [loadingResumes, setLoadingResumes] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (!isLoading && !auth.isAuthenticated) navigate("/auth?next=/");
   }, [isLoading, auth.isAuthenticated, navigate]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const loadResumes = async () => {
       setLoadingResumes(true);
       const resumes = (await kv.list("resume:*", true)) as KVItem[];
